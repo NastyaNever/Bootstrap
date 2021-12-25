@@ -1,7 +1,6 @@
 package com.example.Boot.dao;
 
 import com.example.Boot.entity.Role;
-import com.example.Boot.entity.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +19,7 @@ public class RoleDaoImpl implements RoleDao {
     private EntityManager entityManager;
 
     @Override
-    public List<User> getListRole() {
+    public List<Role> getListRole() {
         return entityManager.createQuery("SELECT  r FROM Role r").getResultList();
     }
 

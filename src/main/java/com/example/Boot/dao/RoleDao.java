@@ -1,13 +1,12 @@
 package com.example.Boot.dao;
 
 import com.example.Boot.entity.Role;
-import com.example.Boot.entity.User;
 
 import java.util.List;
 
 public interface RoleDao {
 
-    List<User> getListRole();
+    List<Role> getListRole();
 
     void add(Role role);
 

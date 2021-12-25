@@ -2,6 +2,7 @@ package com.example.Boot.controller;
 
 import com.example.Boot.entity.User;
 import com.example.Boot.service.UserService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,9 +19,9 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping(value = "/{name}")
-    public String pageForUser(Model model, @PathVariable("name") String name,@ModelAttribute("user") User user) {
-        model.addAttribute("user",userService.findByUserName(name));
+    @GetMapping
+    public String userInfo(@AuthenticationPrincipal User user, Model model) {
+        model.addAttribute("user",user);
         return "pages/userPage" ;
     }
 }

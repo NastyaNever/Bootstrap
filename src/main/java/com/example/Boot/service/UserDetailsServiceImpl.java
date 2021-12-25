@@ -18,17 +18,17 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         this.userDaoImpl = userDaoImpl;
     }
 
-    public User getUserByName(String username){
-        return userDaoImpl.findByUserName(username);
+    public User getUserByEmail(String email){
+        return userDaoImpl.findByUserEmail(email);
     }
 
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = getUserByName(username);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = getUserByEmail(email);
         if (user == null) {
-            throw new UsernameNotFoundException(String.format("User not found", username));
+            throw new UsernameNotFoundException(String.format("Email not found", email));
         }
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), user.getAuthorities());
+        return user;
     }
 }

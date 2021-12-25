@@ -30,7 +30,7 @@ public class User implements UserDetails {
     @Column(name = "user_id")
     private Long id;
 
-    @Column(name = "name", unique = true, nullable = false)
+    @Column(name = "first_name")
     private String name;
 
     @Column(name = "password")
@@ -39,6 +39,13 @@ public class User implements UserDetails {
     @Column(name = "e_mail")
     private String email;
 
+    @Column(name = "last_name")
+    private String last_name;
+
+    @Column(name = "age")
+    private int age;
+
+//    @Fetch(value = FetchMode.JOIN)
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -48,18 +55,22 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(Long id, String name, String password, String email, Set<Role> roles) {
+    public User(Long id, String name, String password, String email, String last_name, int age, Set<Role> roles) {
         this.id = id;
         this.name = name;
         this.password = password;
         this.email = email;
+        this.last_name = last_name;
+        this.age = age;
         this.roles = roles;
     }
 
-    public User(String name, String password, String email, Set<Role> roles) {
+    public User(String name, String password, String email, String last_name, int age, Set<Role> roles) {
         this.name = name;
         this.password = password;
         this.email = email;
+        this.last_name = last_name;
+        this.age = age;
         this.roles = roles;
     }
 
@@ -97,6 +108,22 @@ public class User implements UserDetails {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getLast_name() {
+        return last_name;
+    }
+
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     @Override

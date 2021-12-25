@@ -2,14 +2,13 @@ package com.example.Boot.service;
 
 
 import com.example.Boot.entity.Role;
-import com.example.Boot.entity.User;
 
 import java.util.HashSet;
 import java.util.List;
 
 public interface RoleService {
 
-    List<User> getListRole();
+    List<Role> getListRole();
 
     void add(Role role);
 

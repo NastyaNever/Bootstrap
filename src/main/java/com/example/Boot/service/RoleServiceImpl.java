@@ -2,7 +2,6 @@ package com.example.Boot.service;
 
 import com.example.Boot.dao.RoleDao;
 import com.example.Boot.entity.Role;
-import com.example.Boot.entity.User;
 import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.List;
@@ -18,12 +17,11 @@ public class RoleServiceImpl implements RoleService{
     }
 
     @Override
-    public List<User> getListRole() {
+    public List<Role> getListRole() {
         return roleDao.getListRole();
     }
 
     @Override
-
     public void add(Role role) {
         roleDao.add(role);
     }

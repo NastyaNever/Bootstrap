@@ -18,7 +18,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> getAllUsers() {
-        return entityManager.createQuery("SELECT  u FROM User u JOIN FETCH u.roles", User.class).getResultList();
+        return entityManager.createQuery("SELECT DISTINCT u FROM User u JOIN FETCH u.roles", User.class).getResultList();
     }
 
     @Transactional
@@ -45,8 +45,14 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public User findByUserEmail(String email) {
+        return entityManager.createQuery("SELECT  u FROM User u JOIN FETCH u.roles WHERE u.email=:email", User.class).setParameter("email", email).getSingleResult();
+
+    }
+
+    @Override
     public User findByUserName(String name) {
-        return entityManager.createQuery("SELECT u FROM User u JOIN FETCH u.roles WHERE u.name=:name", User.class).setParameter("name", name).getSingleResult();
+        return entityManager.createQuery("SELECT DISTINCT u FROM User u JOIN FETCH u.roles WHERE u.name=:name", User.class).setParameter("name", name).getSingleResult();
 
     }
 }
